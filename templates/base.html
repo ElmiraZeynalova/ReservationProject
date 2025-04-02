@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Le Jardin{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='custom.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="{{ url_for('index') }}">
+          <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="Le Jardin"
+          />
+        </a>
+        <nav>
+          <a class="book-button" href="{{ url_for('book') }}">BOOK</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>{% block content %}{% endblock %}</main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 Le Jardin de Russie. Все права защищены.</p>
+        <p>Адрес: Via del Babuino 9, 00187 Рим, Италия</p>
+        <p>Телефон: +39 06 328881</p>
+      </div>
+    </footer>
+  </body>
+</html>
