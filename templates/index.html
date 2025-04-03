@@ -116,22 +116,5 @@ content %}
     </p>
   </div>
 </section>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const header = document.querySelector("header");
-    const hero = document.querySelector(".hero");
 
-    function updateHeader() {
-      const heroBottom = hero.getBoundingClientRect().bottom; // Нижняя граница изображения
-      if (heroBottom <= 0) {
-        header.classList.add("header-scrolled"); // Меняем цвет хедера
-      } else {
-        header.classList.remove("header-scrolled"); // Хедер остаётся прозрачным
-      }
-    }
-
-    window.addEventListener("scroll", updateHeader);
-    window.addEventListener("resize", updateHeader); // Чтобы учитывать изменения размеров окна
-  });
-</script>
 {% endblock %}

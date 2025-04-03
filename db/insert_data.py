@@ -1,5 +1,5 @@
 import sqlite3
-from backend.db.config import DB_NAME
+from config import DB_NAME
 
 connection = sqlite3.connect(DB_NAME)
 cursor = connection.cursor()
