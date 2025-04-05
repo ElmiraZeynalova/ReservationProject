@@ -2,7 +2,7 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}Le Jardin{% endblock %}</title>
+    <title>{% block title %}Monarque{% endblock %}</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='custom.css') }}"
@@ -12,9 +12,9 @@
     <header id="header">
       <div class="container">
         <a href="{{ url_for('index') }}">
-          <img
+          <img class="logo"
             src="{{ url_for('static', filename='images/logo.png') }}"
-            alt="Le Jardin"
+            alt="Monarque"
           />
         </a>
         <nav>
@@ -27,9 +27,11 @@
 
     <footer>
       <div class="container">
-        <p>&copy; 2025 Le Jardin de Russie. Все права защищены.</p>
-        <p>Адрес: Via del Babuino 9, 00187 Рим, Италия</p>
-        <p>Телефон: +39 06 328881</p>
+        <p></p>
+        Monarque restaurant promises to bring to your plate
+          the finest that nature has to offer, with a menu based on fresh, high
+          quality, local ingredients.
+        </p>
       </div>
     </footer>
 

@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #d9ead3;
+  background-color: #f6f7f6;
 }
 
 header {
@@ -9,13 +9,21 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 80px;
+  height: 87px;
   transition: background-color 0.3s ease-in-out;
   z-index: 1000;
 }
 
+.logo {
+  position: absolute;
+  left: 25px;
+  top: -3px;
+  width: 90px;
+  height: 90px;
+}
+
 .header-scrolled {
-  background-color: #d9ead3;
+  background-color: #f6f7f6;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -77,7 +85,7 @@ header nav {
 
 /* Контент модального окна */
 .modal-content {
-  background-color: #d9ead3;
+  background-color: #f6f7f6;
   padding: 20px;
   border-radius: 10px;
   width: 400px;
@@ -95,13 +103,29 @@ header nav {
 
 /* Кнопка "BOOK" */
 .book-button {
-  color: red;
+  position: absolute;
+  top: 22.5px;
+  right: 50px;
+
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 500; /* To mimic the bold clean look */
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  color: black;
+  background-color: #e0c900;
+  padding: 12px 20px;
   text-decoration: none;
-  padding: 10px 15px;
+  text-align: center;
+  border: none;
   cursor: pointer;
+
+  transition: all 0.3s ease-in-out;
 }
 
 .book-button:hover {
+  background-color: black;
   color: white;
 }
 
