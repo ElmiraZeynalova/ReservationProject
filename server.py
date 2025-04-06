@@ -4,8 +4,19 @@ from wtforms import SelectField, DateField, SubmitField
 from wtforms.validators import DataRequired
 from datetime import datetime
 from flask_bootstrap import Bootstrap5
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import text
 
+# this variable, db, will be used for all SQLAlchemy commands
+db = SQLAlchemy()
+# create the app
 app = Flask(__name__)
+# change string to the name of your database; add path if necessary
+db_name = 'reservation.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_name
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+db.init_app(app)
+
 app.secret_key = 'j3R7l#@kd!o9z$%v3Q2p8yB1mLx7WkzN'  
 bootstrap = Bootstrap5(app)  
     
@@ -29,9 +40,8 @@ def index():
     if form.validate_on_submit():
         # тут буде логіка збереження бронювання у БД або лист
         flash('Бронювання успішно прийнято!', 'success')
-        return redirect(url_for('index'))
+        #return redirect(url_for('index'))
     return render_template('index.html', reservation_form=form)
-
 
 
 if __name__ == '__main__':

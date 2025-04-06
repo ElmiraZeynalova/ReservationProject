@@ -1,1 +1,1 @@
-DB_NAME = 'my_database.db' 
+DB_NAME = 'reservation.db' 
