@@ -6,19 +6,18 @@ from datetime import datetime
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import text
+from database import db, User, Table, Reservation
 
-# this variable, db, will be used for all SQLAlchemy commands
-db = SQLAlchemy()
-# create the app
 app = Flask(__name__)
+app.secret_key = 'j3R7l#@kd!o9z$%v3Q2p8yB1mLx7WkzN'  
 # change string to the name of your database; add path if necessary
 db_name = 'reservation.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_name
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db.init_app(app)
 
-app.secret_key = 'j3R7l#@kd!o9z$%v3Q2p8yB1mLx7WkzN'  
+db.init_app(app)
 bootstrap = Bootstrap5(app)  
+
     
 
 class ReservationForm(FlaskForm):
