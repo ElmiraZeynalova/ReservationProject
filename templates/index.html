@@ -9,6 +9,20 @@ content %}
   <div class="container"></div>
 </section>
 
+{% if no_tables %}
+<div class="alert alert-warning mt-3">
+  Вибраний час зайнятий. Доступні альтернативи:
+  <ul>
+    {% for time in available_slots %}
+    <li>{{ time }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %} {% with messages = get_flashed_messages(with_categories=true) %} {%
+if messages %} {% for category, message in messages %}
+<div class="alert alert-{{ category }}">{{ message }}</div>
+{% endfor %} {% endif %} {% endwith %}
+
 <section class="about">
   <div class="container">
     <h2>О ресторане</h2>
