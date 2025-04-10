@@ -1,4 +1,3 @@
-
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -28,3 +27,5 @@ class Reservation(db.Model):
     table_id = db.Column(db.Integer, db.ForeignKey('tables.id'), nullable=False)
     time = db.Column(db.String(10), nullable=False)  # наприклад: "18:00"
     date = db.Column(db.Date, nullable=False)
+
+

@@ -72,49 +72,39 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form method="POST" action="{{ url_for('index') }}">
-              {{ reservation_form.hidden_tag() }}
-
-              <div class="mb-3">
-                {{ reservation_form.date.label(class="form-label") }} {{
-                reservation_form.date(class="form-control") }}
-              </div>
-
-              <div class="mb-3">
-                {{ reservation_form.party_size.label(class="form-label") }} {{
-                reservation_form.party_size(class="form-select") }}
-              </div>
-
-              <div class="mb-3">
-                {{ reservation_form.time.label(class="form-label") }} {{
-                reservation_form.time(class="form-select") }}
-              </div>
-
-              <button type="submit" class="gold-button">Search</button>
-
-              <!-- Виведення флеш-повідомлень -->
-              <div class="container mt-4">
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                <div class="alert-container">
-                  {% for category, message in messages %}
-                  <div
-                    class="alert alert-{{ category }} alert-dismissible fade show"
-                    role="alert"
-                  >
-                    {{ message }}
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="alert"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  {% endfor %}
+            <!-- STEP 1: форма пошуку -->
+            <div id="step1">
+              <form id="reservationForm">
+                {{ reservation_form.hidden_tag() }}
+                <div class="mb-3">
+                  {{ reservation_form.date.label(class="form-label") }} {{
+                  reservation_form.date(class="form-control", id="res-date") }}
                 </div>
-                {% endif %} {% endwith %}
-              </div>
-            </form>
+                <div class="mb-3">
+                  {{ reservation_form.party_size.label(class="form-label") }} {{
+                  reservation_form.party_size(class="form-select",
+                  id="res-size") }}
+                </div>
+                <div class="mb-3">
+                  {{ reservation_form.time.label(class="form-label") }} {{
+                  reservation_form.time(class="form-select", id="res-time") }}
+                </div>
+                <button
+                  type="button"
+                  class="gold-button"
+                  id="checkAvailability"
+                >
+                  Search
+                </button>
+              </form>
+            </div>
+
+            <!-- STEP 2: результати -->
+            <div id="step2" style="display: none">
+              <h6 class="mb-3">Available times:</h6>
+              <ul id="availableTimes" class="list-group mb-3"></ul>
+              <button class="btn btn-secondary" id="backBtn">Back</button>
+            </div>
           </div>
         </div>
       </div>

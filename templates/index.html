@@ -18,6 +18,21 @@ content %}
     {% endfor %}
   </ul>
 </div>
+<div class="alternative-times">
+  {% if alternatives %}
+  <p>Available at:</p>
+  <div>
+    {% for alt_time in alternatives %}
+    <button
+      class="btn btn-secondary alternative-time-btn"
+      data-time="{{ alt_time }}"
+    >
+      {{ alt_time }}
+    </button>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
 {% endif %} {% with messages = get_flashed_messages(with_categories=true) %} {%
 if messages %} {% for category, message in messages %}
 <div class="alert alert-{{ category }}">{{ message }}</div>
@@ -68,16 +83,6 @@ if messages %} {% for category, message in messages %}
       tantalising array of local dishes, including Tonnarelli Cacio e Pepe,
       Spaghetti with fresh tomato and basil, and Lamb "scottadito" with wild
       chicory.Famed for its exemplary Italian cuisine, the colourful and
-      fragrant dishes have been inspired by the Mediterranean ingredients of the
-      region and are overseen by Chef Fulvio Pierangelini. The à la carte menu
-      showcases a tantalising array of local dishes, including Tonnarelli Cacio
-      e Pepe, Spaghetti with fresh tomato and basil, and Lamb "scottadito" with
-      wild chicory.Famed for its exemplary Italian cuisine, the colourful and
-      fragrant dishes have been inspired by the Mediterranean ingredients of the
-      region and are overseen by Chef Fulvio Pierangelini. The à la carte menu
-      showcases a tantalising array of local dishes, including Tonnarelli Cacio
-      e Pepe, Spaghetti with fresh tomato and basil, and Lamb "scottadito" with
-      wild chicory.Famed for its exemplary Italian cuisine, the colourful and
       fragrant dishes have been inspired by the Mediterranean ingredients of the
       region and are overseen by Chef Fulvio Pierangelini. The à la carte menu
       showcases a tantalising array of local dishes, including Tonnarelli Cacio
