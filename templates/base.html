@@ -4,19 +4,16 @@
     <meta charset="UTF-8" />
     <title>{% block title %}Monarque{% endblock %}</title>
 
-    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
 
-    <!-- Твій кастомний CSS -->
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='custom.css') }}"
     />
 
-    <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;600&display=swap"
       rel="stylesheet"
@@ -72,7 +69,6 @@
             ></button>
           </div>
           <div class="modal-body">
-            <!-- STEP 1: форма пошуку -->
             <div id="step1">
               <form id="reservationForm">
                 {{ reservation_form.hidden_tag() }}
@@ -91,7 +87,7 @@
                 </div>
                 <button
                   type="button"
-                  class="gold-button"
+                  class="search-button"
                   id="checkAvailability"
                 >
                   Search
@@ -99,11 +95,10 @@
               </form>
             </div>
 
-            <!-- STEP 2: результати -->
             <div id="step2" style="display: none">
               <h6 class="mb-3">Available times:</h6>
               <ul id="availableTimes" class="list-group mb-3"></ul>
-              <button class="btn btn-secondary" id="backBtn">Back</button>
+              <button class="back-button" id="backBtn">Back</button>
             </div>
           </div>
         </div>

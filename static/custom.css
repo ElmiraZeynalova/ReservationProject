@@ -106,16 +106,70 @@ footer {
 }
 
 /* Стиль кнопок усередині модального вікна */
-.gold-button {
+.search-button {
   background-color: #e0c900;
   color: black;
   font-weight: 600;
   border: none;
   padding: 12px;
   transition: 0.3s ease-in-out;
+  border-radius: 6px;
 }
 
-.gold-button:hover {
+.search-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.back-button {
+  background-color: #e0c900;
+  color: black;
+  font-weight: 600;
+  border: none;
+  padding: 12px;
+  transition: 0.3s ease-in-out;
+  border-radius: 6px;
+}
+
+.back-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.complete-reservation-button {
+  background-color: #e0c900;
+  color: black;
+  font-weight: 600;
+  border: none;
+  padding: 12px;
+  transition: 0.3s ease-in-out;
+  border-radius: 6px;
+}
+
+.complete-reservation-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.list-group-item {
+  display: flex; /* Используем flexbox для выравнивания */
+  justify-content: space-between; /* Размещаем элементы по краям */
+  align-items: center; /* Выравниваем элементы по вертикали */
+}
+
+.alternative-time-btn {
+  background-color: #e0c900;
+  color: black;
+  font-weight: 600;
+  border: none;
+  padding: 6px 10px;
+  font-size: 16px;
+  margin-left: auto;
+  display: inline-block; /* Убедимся, что кнопка отображается корректно */
+  transition: 0.3s ease-in-out;
+}
+
+.alternative-time-btn:hover {
   background-color: black;
   color: white;
 }

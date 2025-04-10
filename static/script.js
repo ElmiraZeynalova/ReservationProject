@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.className = 'list-group-item';
                 li.textContent = `${alt}`;
                 const button = document.createElement('button');
-                button.className = 'alternative-time-btn btn btn-link';
+                button.className = 'alternative-time-btn btn btn-primary'; // Изменен стиль кнопки
                 button.setAttribute('data-time', alt);
                 button.setAttribute('data-table-id', data.table_id || '1'); // Убедимся, что table_id передается
                 button.textContent = 'Select';
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const timeField = document.querySelector("#bookingModal select[name='time']");
             if (timeField) {
                 timeField.value = selectedTime; // Устанавливаем выбранное время в поле формы
-                alert(`You selected ${selectedTime} as your reservation time.`);
+                // alert(`You selected ${selectedTime} as your reservation time.`); // Удалено уведомление
             }
         }
     });
