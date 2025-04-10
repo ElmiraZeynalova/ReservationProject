@@ -31,6 +31,12 @@
           {{ form.email.label(class="form-label") }} {{
           form.email(class="form-control") }}
         </div>
+
+        <!-- Додаємо приховані поля -->
+        <input type="hidden" name="table_id" value="{{ table_id }}" />
+        <input type="hidden" name="date" value="{{ date }}" />
+        <input type="hidden" name="time" value="{{ time }}" />
+
         {{ form.submit(class="complete-reservation-button") }}
       </form>
     </div>

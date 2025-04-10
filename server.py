@@ -20,7 +20,7 @@ bootstrap = Bootstrap5(app)
 
 class ReservationForm(FlaskForm):
     date = DateField('Date', validators=[DataRequired()], format='%Y-%m-%d')
-    party_size = SelectField('Number of guests', validators=[DataRequired()], choices=[(str(i), i) for i in range(1, 11)])
+    party_size = SelectField('Number of guests', validators=[DataRequired()], choices=[(str(i), i) for i in range(1, 9)])
     time = SelectField('Time', validators=[DataRequired()], choices=[
         ('08:00', '08:00'),('08:30', '08:30'),('09:00', '09:00'),('09:30', '09:30'),('10:00', '10:00'),('10:30', '10:30'),('11:00', '11:00'),('11:30', '11:30'),('12:00', '12:00'),('12:30', '12:30'),('13:00', '13:00'),('13:30', '13:30'),('14:00', '14:00'), ('14:30', '14:30'),('15:00', '15:00'),('15:30', '15:30'),('16:00', '16:00'),('16:30', '16:30'),('17:00', '17:00'),('17:30', '17:30'),('18:00', '18:00'), ('18:30', '18:30'), ('19:00', '19:00'),
         ('19:30', '19:30'), ('20:00', '20:00'), ('20:30', '20:30'),
@@ -104,7 +104,6 @@ def check_availability():
 def confirm_reservation():
     form = ConfirmReservationForm()
     if form.validate_on_submit():
-        # Получаем данные из формы
         fullname = form.fullname.data
         phone = form.phone.data
         email = form.email.data
@@ -112,30 +111,40 @@ def confirm_reservation():
         date = request.form.get('date')
         time = request.form.get('time')
 
-        # Создаем нового пользователя
+        if not table_id or not date or not time:
+            flash('Missing reservation details. Please try again.', 'danger')
+            return redirect(url_for('index'))
+
+        try:
+            reservation_date = datetime.strptime(date, '%Y-%m-%d').date()
+        except ValueError:
+            flash('Invalid date format. Please try again.', 'danger')
+            return redirect(url_for('index'))
+
         user = User(fullname=fullname, phone=phone, email=email)
         db.session.add(user)
         db.session.commit()
 
-        # Создаем новую запись бронирования
         reservation = Reservation(
             user_id=user.id,
             table_id=table_id,
-            date=datetime.strptime(date, '%Y-%m-%d').date(),
+            date=reservation_date,
             time=time
         )
         db.session.add(reservation)
 
-        # Обновляем статус стола
         table = Table.query.get(table_id)
         if table:
             table.status = 'reserved'
             db.session.commit()
 
+        flash('Reservation confirmed!', 'success')
         return redirect(url_for('index'))
 
-    # Передаем форму в шаблон
-    return render_template('confirm_reservation.html', form=form)
+    table_id = request.args.get('table_id')
+    date = request.args.get('date')
+    time = request.args.get('time')
+    return render_template('confirm_reservation.html', form=form, table_id=table_id, date=date, time=time)
 
 
 def get_alternative_times(date, time_str, party_size):
