@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.className = 'alternative-time-btn btn btn-primary'; // Изменен стиль кнопки
                 button.setAttribute('data-time', alt);
                 button.setAttribute('data-table-id', data.table_id || '1'); // Убедимся, что table_id передается
-                button.textContent = 'Select';
+                button.textContent = 'Book';
                 li.appendChild(button);
                 timesList.appendChild(li);
             });
