@@ -31,21 +31,7 @@ header {
   position: relative;
   width: 100%;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-}
-
-.hero img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  z-index: -1;
+  overflow: hidden;
 }
 
 .hero .container {
@@ -64,10 +50,6 @@ header nav {
   margin-left: auto;
 }
 
-.jardin-image {
-  width: 100%;
-  height: auto;
-}
 footer {
   background-color: black;
   color: white;
@@ -173,9 +155,9 @@ footer {
 }
 
 .list-group-item {
-  display: flex; /* Используем flexbox для выравнивания */
-  justify-content: space-between; /* Размещаем элементы по краям */
-  align-items: center; /* Выравниваем элементы по вертикали */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .alternative-time-btn {
@@ -193,4 +175,65 @@ footer {
 .alternative-time-btn:hover {
   background-color: black;
   color: white;
+}
+
+.slider-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  z-index: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(50%);
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.centered-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  font-family: "Cormorant Garamond", serif;
+  z-index: 2;
+}
+
+.text-top,
+.text-bottom {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.separator-line {
+  width: 60px;
+  height: 1px;
+  background-color: white;
+  margin: 10px auto;
 }

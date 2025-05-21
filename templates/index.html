@@ -2,11 +2,54 @@
 content %}
 
 <section class="hero">
-  <img
-    src="{{ url_for('static', filename='images/jardin.jpg') }}"
-    alt="Monarque"
-  />
-  <div class="container"></div>
+  <div class="slider-container">
+    <div class="slider">
+      <div class="slide active">
+        <img
+          src="{{ url_for('static', filename='images/jardin.jpg') }}"
+          alt="Monarque Jardin"
+        />
+        <div class="centered-text">
+          <div class="text-top">MONARQUE</div>
+          <div class="separator-line"></div>
+          <div class="text-bottom">LVIV</div>
+        </div>
+      </div>
+      <div class="slide">
+        <img
+          src="{{ url_for('static', filename='images/inside.jpg') }}"
+          alt="Monarque Interior"
+        />
+        <div class="centered-text">
+          <div class="text-top">MONARQUE</div>
+          <div class="separator-line"></div>
+          <div class="text-bottom">LVIV</div>
+        </div>
+      </div>
+      <div class="slide">
+        <img
+          src="{{ url_for('static', filename='images/inside1.jpg') }}"
+          alt="Monarque Dish"
+        />
+        <div class="centered-text">
+          <div class="text-top">MONARQUE</div>
+          <div class="separator-line"></div>
+          <div class="text-bottom">LVIV</div>
+        </div>
+      </div>
+      <div class="slide">
+        <img
+          src="{{ url_for('static', filename='images/inside2.jpg') }}"
+          alt="Monarque Terrace"
+        />
+        <div class="centered-text">
+          <div class="text-top">MONARQUE</div>
+          <div class="separator-line"></div>
+          <div class="text-bottom">LVIV</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 {% if no_tables %}
@@ -45,91 +88,94 @@ if messages %} {% for category, message in messages %}
       Le Jardin de Russie – это сочетание утончённой итальянской кухни и
       уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
       изысканными блюдами, приготовленными из свежих и качественных ингредиентов
-      Famed for its exemplary Italian cuisine, the colourful and fragrant dishes
-      have been inspired by the Mediterranean ingredients of the region and are
-      overseen by Chef Fulvio Pierangelini. The à la carte menu showcases a
-      tantalising array of local dishes, including Tonnarelli Cacio e Pepe,
-      Spaghetti with fresh tomato and basil, and Lamb "scottadito" with wild
-      chicory. Famed for its exemplary Italian cuisine, the colourful and
-      fragrant dishes have been inspired by the Mediterranean ingredients of the
-      region and are overseen by Chef Fulvio Pierangelini. The à la carte menu
-      showcases a tantalising array of local dishes, including Tonnarelli Cacio
-      e Pepe, Spaghetti with fresh tomato and basil, and Lamb "scottadito" with
-      wild chicory. The restaurant also offers a selection of fine wines from
-      the region, as well as a range of cocktails and aperitifs.Famed for its
-      exemplary Italian cuisine, the colourful and fragrant dishes have been
-      inspired by the Mediterranean ingredients of the region and are overseen
-      by Chef Fulvio Pierangelini. The à la carte menu showcases a tantalising
-      array of local dishes, including Tonnarelli Cacio e Pepe, Spaghetti with
-      fresh tomato and basil, and Lamb "scottadito" with wild chicory.Famed for
-      its exemplary Italian cuisine, the colourful and fragrant dishes have been
-      inspired by the Mediterranean ingredients of the region and are overseen
-      by Chef Fulvio Pierangelini. The à la carte menu showcases a tantalising
-      array of local dishes, including Tonnarelli Cacio e Pepe, Spaghetti with
-      fresh tomato and basil, and Lamb "scottadito" with wild chicory.vFamed for
-      its exemplary Italian cuisine, the colourful and fragrant dishes have been
-      inspired by the Mediterranean ingredients of the region and are overseen
-      by Chef Fulvio Pierangelini. The à la carte menu showcases a tantalising
-      array of local dishes, including Tonnarelli Cacio e Pepe, Spaghetti with
-      fresh tomato and basil, and Lamb "scottadito" with wild chicory.vFamed for
-      its exemplary Italian cuisine, the colourful and fragrant dishes have been
-      inspired by the Mediterranean ingredients of the region and are overseen
-      by Chef Fulvio Pierangelini. The à la carte menu showcases a tantalising
-      array of local dishes, including Tonnarelli Cacio e Pepe, Spaghetti with
-      fresh tomato and basil, and Lamb "scottadito" with wild chicory.v vFamed
-      for its exemplary Italian cuisine, the colourful and fragrant dishes have
-      been inspired by the Mediterranean ingredients of the region and are
-      overseen by Chef Fulvio Pierangelini. The à la carte menu showcases a
-      tantalising array of local dishes, including Tonnarelli Cacio e Pepe,
-      Spaghetti with fresh tomato and basil, and Lamb "scottadito" with wild
-      chicory.Famed for its exemplary Italian cuisine, the colourful and
-      fragrant dishes have been inspired by the Mediterranean ingredients of the
-      region and are overseen by Chef Fulvio Pierangelini. The à la carte menu
-      showcases a tantalising array of local dishes, including Tonnarelli Cacio
-      e Pepe, Spaghetti with fresh tomato and basil, and Lamb "scottadito" with
-      wild chicory.Famed for its exemplary Italian cuisine, the colourful and
-      fragrant dishes have been inspired by the Mediterranean ingredients of the
-      region and are overseen by Chef Fulvio Pierangelini. The à la carte menu
-      showcases a tantalising array of local dishes, including Tonnarelli Cacio
-      e Pepe, Spaghetti with fresh tomato and basil, and Lamb "scottadito" with
-      wild chicory.Famed for its exemplary Italian cuisine, the colourful and
-      fragrant dishes have been inspired by the Mediterranean ingredients of the
-      region and are overseen by Chef Fulvio Pierangelini. The à la carte menu
-      showcases a tantalising array of local dishes, including Tonnarelli Cacio
-      e Pepe, Spaghetti with fresh tomato and basil, and Lamb "scottadito" with
-      wild chicory.Famed for its exemplary Italian cuisine, the colourful and
-      fragrant dishes have been inspired by the Mediterranean ingredients of the
-      region and are overseen by Chef Fulvio Pierangelini. The à la carte menu
-      showcases a tantalising array of local dishes, including Tonnarelli Cacio
-      e Pepe, Spaghetti with fresh tomato and basil, and Lamb "scottadito" with
-      wild chicory.Famed for its exemplary Italian cuisine, the colourful and
-      fragrant dishes have been inspired by the Mediterranean ingredients of the
-      region and are overseen by Chef Fulvio Pierangelini. The à la carte menu
-      showcases a tantalising array of local dishes, including Tonnarelli Cacio
-      e Pepe, Spaghetti with fresh tomato and basil, and Lamb "scottadito" with
-      wild chicory.Famed for its exemplary Italian cuisine, the colourful and
-      fragrant dishes have been inspired by the Mediterranean ingredients of the
-      region and are overseen by Chef Fulvio Pierangelini. The à la carte menu
-      showcases a tantalising array of local dishes, including Tonnarelli Cacio
-      e Pepe, Spaghetti with fresh tomato and basil, and Lamb "scottadito" with
-      wild chicory.Famed for its exemplary Italian cuisine, the colourful and
-      fragrant dishes have been inspired by the Mediterranean ingredients of the
-      region and are overseen by Chef Fulvio Pierangelini. The à la carte menu
-      showcases a tantalising array of local dishes, including Tonnarelli Cacio
-      e Pepe, Spaghetti with fresh tomato and basil, and Lamb "scottadito" with
-      wild chicory.Famed for its exemplary Italian cuisine, the colourful and
-      fragrant dishes have been inspired by the Mediterranean ingredients of the
-      region and are overseen by Chef Fulvio Pierangelini. The à la carte menu
-      showcases a tantalising array of local dishes, including Tonnarelli Cacio
-      e Pepe, Spaghetti with fresh tomato and basil, and Lamb "scottadito" with
-      wild chicory.Famed for its exemplary Italian cuisine, the colourful and
-      fragrant dishes have been inspired by the Mediterranean ingredients of the
-      region and are overseen by Chef Fulvio Pierangelini. The à la carte menu
-      showcases a tantalising array of local dishes, including Tonnarelli Cacio
-      e Pepe, Spaghetti with fresh tomato and basil, and Lamb "scottadito" with
-      wild chicory.
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
+      Le Jardin de Russie – это сочетание утончённой итальянской кухни и
+      уникальной атмосферы сада. Мы предлагаем нашим гостям насладиться
+      изысканными блюдами, приготовленными из свежих и качественных ингредиентов
     </p>
   </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.querySelectorAll(".slide");
+    let slideIndex = 0;
+
+    function showSlides() {
+      slides.forEach((slide, index) => {
+        slide.classList.remove("active");
+      });
+
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add("active");
+    }
+
+    // Покажи перший слайд одразу
+    slides[slideIndex].classList.add("active");
+
+    // Запускаємо автоперемикання
+    setInterval(showSlides, 5000);
+  });
+</script>
 
 {% endblock %}
