@@ -14,85 +14,105 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const checkBtn = document.getElementById('checkAvailability');
-    const backBtn = document.getElementById('backBtn');
+document.addEventListener('DOMContentLoaded', function() {
+    // Элементы пользовательского интерфейса
     const step1 = document.getElementById('step1');
     const step2 = document.getElementById('step2');
-    const timesList = document.getElementById('availableTimes');
+    const checkAvailabilityBtn = document.getElementById('checkAvailability');
+    const backBtn = document.getElementById('backBtn');
+    const availableTimesList = document.getElementById('availableTimes');
+    const reservationForm = document.getElementById('reservationForm');
 
-    checkBtn.addEventListener('click', async () => {
-        const date = document.getElementById('res-date').value;
-        const time = document.getElementById('res-time').value;
-        const size = document.getElementById('res-size').value;
-
-        const res = await fetch('/check_availability', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ date: date, time: time, party_size: size })
-        });
-
-        const data = await res.json();
-
-        // Очистить список
-        timesList.innerHTML = '';
-
-        // Отобразить доступное или альтернативные времена
-        if (data.times.length > 0) {
-            data.times.forEach(alt => {
-                const li = document.createElement('li');
-                li.className = 'list-group-item';
-                li.textContent = `${alt}`;
-                const button = document.createElement('button');
-                button.className = 'alternative-time-btn btn btn-primary'; // Изменен стиль кнопки
-                button.setAttribute('data-time', alt);
-                button.setAttribute('data-table-id', data.table_id || '1'); // Убедимся, что table_id передается
-                button.textContent = 'Book';
-                li.appendChild(button);
-                timesList.appendChild(li);
-            });
-        } else {
-            const li = document.createElement('li');
-            li.className = 'list-group-item text-danger';
-            li.textContent = 'No available times found.';
-            timesList.appendChild(li);
+    // Обработчик кнопки поиска доступного времени
+    checkAvailabilityBtn.addEventListener('click', function() {
+        const dateInput = document.getElementById('res-date');
+        const sizeInput = document.getElementById('res-size');
+        const timeInput = document.getElementById('res-time');
+        
+        // Проверка заполнения всех полей
+        if (!dateInput.value || !sizeInput.value || !timeInput.value) {
+            alert('Please fill in all fields');
+            return;
         }
-
-        step1.style.display = 'none';
-        step2.style.display = 'block';
+        
+        // Отправка запроса на сервер
+        fetch('/check_availability', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                date: dateInput.value,
+                time: timeInput.value,
+                party_size: sizeInput.value
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Очищаем список доступных времен
+            availableTimesList.innerHTML = '';
+            
+            if (data.times && data.times.length > 0) {
+                // Отображаем доступные времена
+                data.times.forEach(timeSlot => {
+                    const timeItem = document.createElement('li');
+                    timeItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+                    
+                    // Создаем контейнер для времени и бейджа
+                    const timeInfo = document.createElement('div');
+                    
+                    // Добавляем время
+                    const timeText = document.createElement('strong');
+                    timeText.textContent = timeSlot.time;
+                    timeInfo.appendChild(timeText);
+                    
+                    // Если это изначально выбранное время, добавляем бейдж
+                    if (timeSlot.is_original) {
+                        const badge = document.createElement('span');
+                        badge.className = 'badge bg-success ms-2';
+                        badge.textContent = 'Your selected time';
+                        timeInfo.appendChild(badge);
+                    }
+                    
+                    // Добавляем время в элемент списка
+                    timeItem.appendChild(timeInfo);
+                    
+                    // Создаем кнопку бронирования
+                    const bookBtn = document.createElement('a');
+                    bookBtn.className = 'modal-window-book-button btn btn-sm';
+                    bookBtn.textContent = 'Book';
+                    bookBtn.href = `/confirm_reservation/${dateInput.value}/${timeSlot.time}/${sizeInput.value}`;
+                    timeItem.appendChild(bookBtn);
+                    
+                    // Добавляем элемент в список
+                    availableTimesList.appendChild(timeItem);
+                });
+                
+                // Переключаемся на шаг 2
+                step1.style.display = 'none';
+                step2.style.display = 'block';
+            } else {
+                // Если нет доступных времен
+                const noTimeItem = document.createElement('li');
+                noTimeItem.className = 'list-group-item text-center';
+                noTimeItem.textContent = 'No available times found. Please try different date or time.';
+                availableTimesList.appendChild(noTimeItem);
+                
+                // Переключаемся на шаг 2
+                step1.style.display = 'none';
+                step2.style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error('Error checking availability:', error);
+            alert('Error checking availability. Please try again.');
+        });
     });
-
-    backBtn.addEventListener('click', () => {
+    
+    // Обработчик кнопки "Назад"
+    backBtn.addEventListener('click', function() {
+        // Возвращаемся на шаг 1
         step2.style.display = 'none';
         step1.style.display = 'block';
     });
-
-    // Делегирование событий для кнопок с альтернативными временами
-    document.getElementById('availableTimes').addEventListener('click', function (event) {
-        if (event.target.classList.contains('alternative-time-btn')) {
-            const selectedTime = event.target.getAttribute('data-time');
-            const timeField = document.querySelector("#bookingModal select[name='time']");
-            if (timeField) {
-                timeField.value = selectedTime; // Устанавливаем выбранное время в поле формы
-                // alert(`You selected ${selectedTime} as your reservation time.`); // Удалено уведомление
-            }
-        }
-    });
-
-    document.getElementById('availableTimes').addEventListener('click', function (event) {
-        if (event.target.classList.contains('alternative-time-btn')) {
-            const tableId = event.target.getAttribute('data-table-id');
-            const selectedTime = event.target.getAttribute('data-time');
-            const date = document.getElementById('res-date').value;
-
-            if (!tableId) {
-                alert('Invalid table ID.');
-                return;
-            }
-
-            // Перенаправляем на страницу подтверждения
-            window.location.href = `/confirm_reservation?table_id=${tableId}&date=${date}&time=${selectedTime}`;
-        }
-    });
 });
-

@@ -16,7 +16,10 @@
   <body>
     <div class="container mt-5">
       <h2>Confirm Your Reservation</h2>
-      <form method="POST" action="{{ url_for('confirm_reservation') }}">
+      <form
+        method="POST"
+        action="{{ url_for('confirm_reservation', date=date, time=time, party_size=party_size) }}"
+      >
         {{ form.hidden_tag() }}
 
         <div class="mb-3">

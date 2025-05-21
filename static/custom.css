@@ -108,7 +108,18 @@ footer {
   color: white;
 }
 
-/* Стиль кнопок усередині модального вікна */
+.modal-window-book-button {
+  background-color: #e0c900;
+  color: black;
+  border: none;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+.modal-window-book-button:hover {
+  background-color: black;
+  color: white;
+}
+
 .search-button {
   background-color: #e0c900;
   color: black;
