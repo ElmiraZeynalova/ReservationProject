@@ -40,6 +40,7 @@ class ConfirmReservationForm(FlaskForm):
 def index():
     form = ReservationForm()
     alternatives = []
+    
 
     if request.method == 'POST' and form.validate_on_submit():
         date = form.date.data
