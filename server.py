@@ -7,6 +7,7 @@ from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from database import db, User, Table, Reservation
 from flask import jsonify
+from wtforms.validators import DataRequired, Regexp
 
 app = Flask(__name__)
 app.secret_key = 'j3R7l#@kd!o9z$%v3Q2p8yB1mLx7WkzN'  
@@ -22,17 +23,41 @@ class ReservationForm(FlaskForm):
     date = DateField('Date', validators=[DataRequired()], format='%Y-%m-%d')
     party_size = SelectField('Number of guests', validators=[DataRequired()], choices=[(str(i), i) for i in range(1, 9)])
     time = SelectField('Time', validators=[DataRequired()], choices=[
-        ('08:00', '08:00'),('08:30', '08:30'),('09:00', '09:00'),('09:30', '09:30'),('10:00', '10:00'),('10:30', '10:30'),('11:00', '11:00'),('11:30', '11:30'),('12:00', '12:00'),('12:30', '12:30'),('13:00', '13:00'),('13:30', '13:30'),('14:00', '14:00'), ('14:30', '14:30'),('15:00', '15:00'),('15:30', '15:30'),('16:00', '16:00'),('16:30', '16:30'),('17:00', '17:00'),('17:30', '17:30'),('18:00', '18:00'), ('18:30', '18:30'), ('19:00', '19:00'),
-        ('19:30', '19:30'), ('20:00', '20:00'), ('20:30', '20:30'),
-        ('21:00', '21:00')
+        ('08:00', '08:00'), ('08:30', '08:30'), ('09:00', '09:00'),
+        ('09:30', '09:30'), ('10:00', '10:00'), ('10:30', '10:30'),
+        ('11:00', '11:00'), ('11:30', '11:30'), ('12:00', '12:00'),
+        ('12:30', '12:30'), ('13:00', '13:00'), ('13:30', '13:30'),
+        ('14:00', '14:00'), ('14:30', '14:30'), ('15:00', '15:00'),
+        ('15:30', '15:30'), ('16:00', '16:00'), ('16:30', '16:30'),
+        ('17:00', '17:00'), ('17:30', '17:30'), ('18:00', '18:00'),
+        ('18:30', '18:30'), ('19:00', '19:00'), ('19:30', '19:30'),
+        ('20:00', '20:00'), ('20:30', '20:30')
     ])
     submit = SubmitField('Search')
 
 
 class ConfirmReservationForm(FlaskForm):
-    fullname = StringField('Full Name', validators=[DataRequired()])
-    phone = StringField('Phone', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    fullname = StringField(
+        'Full Name',
+        validators=[
+            DataRequired(),
+            Regexp(r'^[A-Za-zА-Яа-яЁёІіЇїЄє\s\-]+$', message="Enter a valid name (letters and spaces only)")
+        ]
+    )
+    phone = StringField(
+        'Phone',
+        validators=[
+            DataRequired(),
+            Regexp(r'^\+?\d{10,15}$', message="Enter a valid phone number")
+        ]
+    )
+    email = StringField(
+        'Email',
+        validators=[
+            DataRequired(),
+            Email(message="Enter a valid email address")
+        ]
+    )
     submit = SubmitField('Complete Reservation')
 
 
@@ -145,10 +170,8 @@ def confirm_reservation(date, time, party_size):
 
 
 def get_available_times(date, time_str, party_size):
-  
     time_obj = datetime.strptime(time_str, "%H:%M")
     available_times = []
-    
 
     available_table = check_time_available(date, time_str, party_size)
     if available_table:
@@ -157,18 +180,18 @@ def get_available_times(date, time_str, party_size):
             'table_id': available_table.id,
             'is_original': True
         })
-    
-  
-    minus_30 = (time_obj - timedelta(minutes=30)).strftime("%H:%M")
-    available_table = check_time_available(date, minus_30, party_size)
-    if available_table:
-        available_times.append({
-            'time': minus_30,
-            'table_id': available_table.id,
-            'is_original': False
-        })
-    
 
+   # Проверка: не добавлять время раньше 08:00
+    minus_30_obj = time_obj - timedelta(minutes=30)
+    if minus_30_obj >= datetime.strptime("08:00", "%H:%M"):
+        minus_30 = minus_30_obj.strftime("%H:%M")
+        available_table = check_time_available(date, minus_30, party_size)
+        if available_table:
+            available_times.append({
+                'time': minus_30,
+                'table_id': available_table.id,
+                'is_original': False
+            })
     plus_30 = (time_obj + timedelta(minutes=30)).strftime("%H:%M")
     available_table = check_time_available(date, plus_30, party_size)
     if available_table:
@@ -177,7 +200,10 @@ def get_available_times(date, time_str, party_size):
             'table_id': available_table.id,
             'is_original': False
         })
-    
+
+    # Сортировка по времени
+    available_times.sort(key=lambda x: datetime.strptime(x['time'], "%H:%M"))
+
     return available_times
 
 
